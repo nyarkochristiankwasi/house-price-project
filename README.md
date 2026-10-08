@@ -11,6 +11,7 @@ Download train.csv and put it in a folder called data. Data files are not stored
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
 - PoolQC has the most missing values: 1,453 of 1,460 rows. This does not mean the data is broken. In this dataset a missing value means the house has no pool, as explained in data_description.txt. The same is true for columns like Alley and Fence.
+- About 17% of houses (242 of 1460) have 4 or more bedrooms
 
 ## Progress
 - [x] First look at the data
