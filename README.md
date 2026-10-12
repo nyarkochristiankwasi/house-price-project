@@ -16,6 +16,8 @@ Listed in the order I built them.
 - 04_select_filter_sort.ipynb: selecting, filtering, and sorting the houses
 - 05_clean_and_group.ipynb: filling missing values and comparing neighborhoods
 - 06_charts.ipynb: charts, plus the comparison of quality, location, and size
+- 07_sql_setup.ipynb: load the data into a SQLite database and run first SQL queries
+
 
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
@@ -25,6 +27,9 @@ Listed in the order I built them.
 - Location: NoRidge has the highest average price (about 335,000) and MeadowV the lowest (about 99,000), a gap of about 3.4 times. NridgHt and StoneBr charge about 158 per square foot, against a typical 120.
 - Size alone does not set the price. The two largest houses (5,642 and 4,676 sq ft, both in Edwards) sold for only 160,000 and 184,750, while large houses in NoRidge sold for 625,000 to 755,000.
 - Not in this dataset, but important to buyers: land ownership type and property documentation. A future model could include these.
+- SQL check: I loaded the data into SQLite, and a query for houses over 400,000 with 4 or more bedrooms returned the same 14 houses as pandas. Seven of the 14 are in NoRidge and three are in NridgHt.
+
+
 
 ## Progress
 - [x] First look at the data
