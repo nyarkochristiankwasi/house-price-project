@@ -20,7 +20,7 @@ Listed in the order I built them.
 - 08_statistics_basics.ipynb: mean, median, standard deviation, and the shape of the price distribution
 - 09_sql_queries.ipynb: SQL queries on the housing data using WHERE, ORDER BY, IN, LIKE, and DISTINCT
 - 10_sql_groupby.ipynb: GROUP BY, HAVING, and JOIN on the housing data, plus a cap rate example
-
+- 11_sql_vs_pandas.ipynb: checks that SQL and pandas agree, plus five SQL practice problems
 
 
 ## What I found so far
@@ -36,7 +36,7 @@ Listed in the order I built them.
 - SQL check: 46 houses were built before 1950 with a quality score of 7 or higher, and 26 of them sold above the overall median (163,000). Most are in OldTown (20) and Crawfor (15), and Crawfor's typical price (about 230,000) is well above OldTown's (about 158,000), so neighborhood matters alongside quality.
 - SQL summaries: average price rises at every step of overall quality (about 50,000 at quality 1 to 438,588 at quality 10), but not at every step of bedroom count. Three-bedroom houses are the most common (804 of 1,460).
 - JOIN check: 636 of the 1,460 houses (about 44%) sold above their own neighborhood's average. The 1892 OldTown house with quality 10 sold 346,775 above its neighborhood average, so quality can outweigh location.
-
+- SQL and pandas gave identical answers on three cross-checks. Garage size and central air both go with higher prices (3-car garages average about 309,600, about 3 times the no-garage average of 103,300), though both partly reflect house size, age, and quality. StoneBr and NridgHt charge the most per square foot (about 165).
 
 ## Progress
 - [x] First look at the data
