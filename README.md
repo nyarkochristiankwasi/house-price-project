@@ -23,7 +23,7 @@ Listed in the order I built them.
 - 11_sql_vs_pandas.ipynb: checks that SQL and pandas agree, plus five SQL practice problems
 - 12_project2_sql_analysis.ipynb: Project 2, five business questions about Ames house prices answered with SQL
 - 13_train_test_split.ipynb: splitting the data into training and test sets before modeling
-
+- 14_first_model.ipynb: first linear regression models, from one feature to five, with errors on the test set
 
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
@@ -41,7 +41,7 @@ Listed in the order I built them.
 - SQL and pandas gave identical answers on three cross-checks. Garage size and central air both go with higher prices (3-car garages average about 309,600, about 3 times the no-garage average of 103,300), though both partly reflect house size, age, and quality. StoneBr and NridgHt charge the most per square foot (about 165).
 - Project 2 (SQL analysis): price depends on quality, location, and size together. Average price rises at every step of quality (about 50,150 to 438,588), NridgHt averages about 2.5 times BrkSide among the larger neighborhoods, and StoneBr and NridgHt charge the most per square foot (about 165). 636 of 1,460 houses sold above their neighborhood average.
 - Train/test split: I split the 1,460 houses 80/20 (1,168 for training, 292 for testing) with a fixed random seed. The average prices of the two sets (181,442 and 178,840) are close to the overall mean, so the test set is a fair sample.
-
+- First models: a linear regression on living area alone is off by about 38,300 on average (R2 0.55). Adding overall quality cuts the error to about 28,600 (R2 0.75), the biggest single improvement, and five features reach about 25,400 (R2 0.79). Garage size and year built added little because they overlap with size and quality.
 
 ## Progress
 - [x] First look at the data
