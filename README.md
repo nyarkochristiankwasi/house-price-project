@@ -24,6 +24,11 @@ Listed in the order I built them.
 - 12_project2_sql_analysis.ipynb: Project 2, five business questions about Ames house prices answered with SQL
 - 13_train_test_split.ipynb: splitting the data into training and test sets before modeling
 - 14_first_model.ipynb: first linear regression models, from one feature to five, with errors on the test set
+- 15_feature_prep.ipynb: filling gaps, one-hot encoding text columns, and fixing a model that predicted a negative price
+
+
+
+
 
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
@@ -42,6 +47,10 @@ Listed in the order I built them.
 - Project 2 (SQL analysis): price depends on quality, location, and size together. Average price rises at every step of quality (about 50,150 to 438,588), NridgHt averages about 2.5 times BrkSide among the larger neighborhoods, and StoneBr and NridgHt charge the most per square foot (about 165). 636 of 1,460 houses sold above their neighborhood average.
 - Train/test split: I split the 1,460 houses 80/20 (1,168 for training, 292 for testing) with a fixed random seed. The average prices of the two sets (181,442 and 178,840) are close to the overall mean, so the test set is a fair sample.
 - First models: guessing the average price for every house is off by about 62,600. A linear regression on living area alone cuts that to about 38,300 (R2 0.55), adding overall quality brings it to about 28,600 (R2 0.75), and five features reach about 25,400 (R2 0.79), nearly 60% lower than the baseline. Garage size and year built added little because they overlap with size and quality.
+- Feature preparation: adding neighborhood (one-hot encoded) cut the average error from 25,415 to 22,339 (R2 0.79 to 0.83). A model using all 300 columns had a much lower R2 (0.44) because it predicted a negative price for one house: only 6 training houses have pools, so the pool columns got extreme weights. Dropping them gave an average error of 19,245 (R2 0.88), about 69% below the baseline. That choice was made after seeing the test results, so the score is slightly optimistic.
+
+
+
 
 
 ## Progress
