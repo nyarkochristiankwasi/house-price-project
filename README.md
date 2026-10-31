@@ -27,7 +27,7 @@ Listed in the order I built them.
 - 15_feature_prep.ipynb: filling gaps, one-hot encoding text columns, and fixing a model that predicted a negative price
 - 16_comps.ipynb: valuing houses by comparable sales, comparing that with the linear model, and blending the two
 - 17_tree_models.ipynb: random forest and gradient boosting compared with the linear model, plus feature importances
-
+- 18_error_analysis.ipynb: where the gradient boosting model fails, by price range, by house, and by sale type
 
 
 ## What I found so far
@@ -50,7 +50,7 @@ Listed in the order I built them.
 - Feature preparation: adding neighborhood (one-hot encoded) cut the average error from 25,415 to 22,339 (R2 0.79 to 0.83). A model using all 300 columns had a much lower R2 (0.44) because it predicted a negative price for one house: only 6 training houses have pools, so the pool columns got extreme weights. Dropping them gave an average error of 19,245 (R2 0.88), about 69% below the baseline. That choice was made after seeing the test results, so the score is slightly optimistic.
 - Comparable sales: valuing each test house as the average of its 5 most similar training houses (same neighborhood, similar quality and size) gave an average error of 22,585, against 22,391 for the linear model with neighborhood. Averaging the two cut the error to 20,498, about 67% below the 62,576 baseline. Both methods underpredict the most expensive houses (quality 9 or 10).
 - Tree models: gradient boosting has the lowest average error (16,626, R2 0.90), about 14% below the best linear model (19,245) and about 73% below the 62,576 baseline. A random forest reaches 17,426. Overall quality holds about half of the model's importance (50.3%), followed by living area (15.1%). The trees avoid the negative price that broke the linear model, but both still underpredict the most expensive houses.
-
+- Error analysis: the gradient boosting model has a median miss of about 10,400, and 69% of test houses are within 10% of the real price (90% within 20%). Errors are concentrated: the worst 10 houses cause 57% of the squared error, and all seven test houses over 400,000 were underpredicted. Sale type matters: the average miss is about 13,400 for Normal sales but about 42,400 for Partial sales (unfinished new construction), which are 9% of the test set.
 
 
 ## Progress
