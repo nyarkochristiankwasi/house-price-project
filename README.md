@@ -26,7 +26,7 @@ Listed in the order I built them.
 - 14_first_model.ipynb: first linear regression models, from one feature to five, with errors on the test set
 - 15_feature_prep.ipynb: filling gaps, one-hot encoding text columns, and fixing a model that predicted a negative price
 - 16_comps.ipynb: valuing houses by comparable sales, comparing that with the linear model, and blending the two
-
+- 17_tree_models.ipynb: random forest and gradient boosting compared with the linear model, plus feature importances
 
 
 
@@ -49,7 +49,7 @@ Listed in the order I built them.
 - First models: guessing the average price for every house is off by about 62,600. A linear regression on living area alone cuts that to about 38,300 (R2 0.55), adding overall quality brings it to about 28,600 (R2 0.75), and five features reach about 25,400 (R2 0.79), nearly 60% lower than the baseline. Garage size and year built added little because they overlap with size and quality.
 - Feature preparation: adding neighborhood (one-hot encoded) cut the average error from 25,415 to 22,339 (R2 0.79 to 0.83). A model using all 300 columns had a much lower R2 (0.44) because it predicted a negative price for one house: only 6 training houses have pools, so the pool columns got extreme weights. Dropping them gave an average error of 19,245 (R2 0.88), about 69% below the baseline. That choice was made after seeing the test results, so the score is slightly optimistic.
 - Comparable sales: valuing each test house as the average of its 5 most similar training houses (same neighborhood, similar quality and size) gave an average error of 22,585, against 22,391 for the linear model with neighborhood. Averaging the two cut the error to 20,498, about 67% below the 62,576 baseline. Both methods underpredict the most expensive houses (quality 9 or 10).
-
+- Tree models: gradient boosting has the lowest average error (16,626, R2 0.90), about 14% below the best linear model (19,245) and about 73% below the 62,576 baseline. A random forest reaches 17,426. Overall quality holds about half of the model's importance (50.3%), followed by living area (15.1%). The trees avoid the negative price that broke the linear model, but both still underpredict the most expensive houses.
 
 
 
