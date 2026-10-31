@@ -29,6 +29,9 @@ Listed in the order I built them.
 - 17_tree_models.ipynb: random forest and gradient boosting compared with the linear model, plus feature importances
 - 18_error_analysis.ipynb: where the gradient boosting model fails, by price range, by house, and by sale type
 - 19_project3_house_price_model.ipynb: Project 3, seven models compared on Ames house prices, with error analysis and limits
+- 20_save_model.ipynb: a compact 8-input gradient boosting model for the app
+
+
 
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
@@ -52,6 +55,10 @@ Listed in the order I built them.
 - Tree models: gradient boosting has the lowest average error (16,626, R2 0.90), about 14% below the best linear model (19,245) and about 73% below the 62,576 baseline. A random forest reaches 17,426. Overall quality holds about half of the model's importance (50.3%), followed by living area (15.1%). The trees avoid the negative price that broke the linear model, but both still underpredict the most expensive houses.
 - Error analysis: the gradient boosting model has a median miss of about 10,400, and 69% of test houses are within 10% of the real price (90% within 20%). Errors are concentrated: the worst 10 houses cause 57% of the squared error, and all seven test houses over 400,000 were underpredicted. Sale type matters: the average miss is about 13,400 for Normal sales but about 42,400 for Partial sales (unfinished new construction), which are 9% of the test set.
 - Project 3 (house price model): I compared seven models on the same 80/20 split. Guessing the average is off by about 62,600, living area alone cuts that to about 38,300, five numeric features to about 25,400, and gradient boosting to about 16,600 (R2 0.90), 73% lower than the baseline. The biggest improvement came from adding overall quality, not from the choice of algorithm. The model tends to underpredict the most expensive houses and does worst on unfinished new construction.
+- Compact model for the app: shrinking the inputs from about 300 columns to 8 that a person can type into a form (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) gives an average error of 17,635 (R2 0.91), against 16,626 for the full model, a loss of about 6% in accuracy.
+
+
+
 
 ## Progress
 - [x] First look at the data

@@ -1,0 +1,72 @@
+{
+  "features": [
+    "GrLivArea",
+    "OverallQual",
+    "GarageCars",
+    "TotalBsmtSF",
+    "YearBuilt",
+    "FullBath",
+    "BedroomAbvGr",
+    "Neighborhood"
+  ],
+  "neighborhoods": [
+    "Blmngtn",
+    "Blueste",
+    "BrDale",
+    "BrkSide",
+    "ClearCr",
+    "CollgCr",
+    "Crawfor",
+    "Edwards",
+    "Gilbert",
+    "IDOTRR",
+    "MeadowV",
+    "Mitchel",
+    "NAmes",
+    "NPkVill",
+    "NWAmes",
+    "NoRidge",
+    "NridgHt",
+    "OldTown",
+    "SWISU",
+    "Sawyer",
+    "SawyerW",
+    "Somerst",
+    "StoneBr",
+    "Timber",
+    "Veenker"
+  ],
+  "ranges": {
+    "GrLivArea": [
+      334,
+      5642
+    ],
+    "OverallQual": [
+      1,
+      10
+    ],
+    "GarageCars": [
+      0,
+      4
+    ],
+    "TotalBsmtSF": [
+      0,
+      6110
+    ],
+    "YearBuilt": [
+      1872,
+      2010
+    ],
+    "FullBath": [
+      0,
+      3
+    ],
+    "BedroomAbvGr": [
+      0,
+      8
+    ]
+  },
+  "test_mae": 17635,
+  "sklearn_version": "1.6.1",
+  "pandas_version": "2.2.3"
+}
