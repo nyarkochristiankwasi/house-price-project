@@ -30,7 +30,7 @@ Listed in the order I built them.
 - 18_error_analysis.ipynb: where the gradient boosting model fails, by price range, by house, and by sale type
 - 19_project3_house_price_model.ipynb: Project 3, seven models compared on Ames house prices, with error analysis and limits
 - 20_save_model.ipynb: a compact 8-input gradient boosting model for the app
-
+- 21_overfitting_and_cv.ipynb: overfitting in decision trees, and 5-fold cross-validation of the compact models
 
 
 ## What I found so far
@@ -56,7 +56,7 @@ Listed in the order I built them.
 - Error analysis: the gradient boosting model has a median miss of about 10,400, and 69% of test houses are within 10% of the real price (90% within 20%). Errors are concentrated: the worst 10 houses cause 57% of the squared error, and all seven test houses over 400,000 were underpredicted. Sale type matters: the average miss is about 13,400 for Normal sales but about 42,400 for Partial sales (unfinished new construction), which are 9% of the test set.
 - Project 3 (house price model): I compared seven models on the same 80/20 split. Guessing the average is off by about 62,600, living area alone cuts that to about 38,300, five numeric features to about 25,400, and gradient boosting to about 16,600 (R2 0.90), 73% lower than the baseline. The biggest improvement came from adding overall quality, not from the choice of algorithm. The model tends to underpredict the most expensive houses and does worst on unfinished new construction.
 - Compact model for the app: shrinking the inputs from about 300 columns to 8 that a person can type into a form (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) gives an average error of 17,635 (R2 0.91), against 16,626 for the full model, a loss of about 6% in accuracy.
-
+- Overfitting and cross-validation: a decision tree with no depth limit is off by about 113 on the houses it trained on but about 25,100 on new ones, so it memorizes. With 5-fold cross-validation, gradient boosting (8 inputs) has an average error of 18,990, about 15% below linear regression (22,333) and about 67% below guessing the average (57,458). The fold-to-fold spread is about 4,500, so earlier single-split scores were slightly optimistic and small differences between models are within noise.
 
 
 
