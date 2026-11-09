@@ -59,6 +59,16 @@ Listed in the order I built them.
 - Overfitting and cross-validation: a decision tree with no depth limit is off by about 113 on the houses it trained on but about 25,100 on new ones, so it memorizes. With 5-fold cross-validation, gradient boosting (8 inputs) has an average error of 18,990, about 15% below linear regression (22,333) and about 67% below guessing the average (57,458). The fold-to-fold spread is about 4,500, so earlier single-split scores were slightly optimistic and small differences between models are within noise.
 
 
+## The app
+A small Streamlit app predicts a house price from 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood). The model is gradient boosting with a typical error of about 19,000 (5-fold cross-validation).
+
+To run it:
+1. Put train.csv in a folder called data.
+2. python -m venv .venv, then activate it
+3. pip install -r requirements.txt
+4. python train_model.py
+5. streamlit run app/app.py
+
 
 ## Progress
 - [x] First look at the data
