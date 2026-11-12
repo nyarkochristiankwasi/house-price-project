@@ -31,7 +31,7 @@ Listed in the order I built them.
 - 19_project3_house_price_model.ipynb: Project 3, seven models compared on Ames house prices, with error analysis and limits
 - 20_save_model.ipynb: a compact 8-input gradient boosting model for the app
 - 21_overfitting_and_cv.ipynb: overfitting in decision trees, and 5-fold cross-validation of the compact models
-
+- 22_property_analysis.ipynb: investor analysis of one real listing (yield, NOI, cap rate) and why the Ames model cannot price it
 
 ## What I found so far
 - The training data has 1,460 houses and 81 columns.
@@ -57,7 +57,7 @@ Listed in the order I built them.
 - Project 3 (house price model): I compared seven models on the same 80/20 split. Guessing the average is off by about 62,600, living area alone cuts that to about 38,300, five numeric features to about 25,400, and gradient boosting to about 16,600 (R2 0.90), 73% lower than the baseline. The biggest improvement came from adding overall quality, not from the choice of algorithm. The model tends to underpredict the most expensive houses and does worst on unfinished new construction.
 - Compact model for the app: shrinking the inputs from about 300 columns to 8 that a person can type into a form (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) gives an average error of 17,635 (R2 0.91), against 16,626 for the full model, a loss of about 6% in accuracy.
 - Overfitting and cross-validation: a decision tree with no depth limit is off by about 113 on the houses it trained on but about 25,100 on new ones, so it memorizes. With 5-fold cross-validation, gradient boosting (8 inputs) has an average error of 18,990, about 15% below linear regression (22,333) and about 67% below guessing the average (57,458). The fold-to-fold spread is about 4,500, so earlier single-split scores were slightly optimistic and small differences between models are within noise.
-
+- Property analysis: a £590,000 new-build 4-bed in Didcot, UK, with an estimated rent of £2,500 a month (six comparables, range £2,000 to £2,750), has a gross yield of about 5.1% but a cap rate of about 3.2% after costs (before mortgage, stamp duty, and tax). Rent matters about three times as much as the service charge uncertainty. The house costs about £428 per sq ft, against about $140 for a similar new house in my Ames model, which should not be used to price it because it was trained on a different market.
 
 ## The app
 A small Streamlit app predicts a house price from 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood). The model is gradient boosting with a typical error of about 19,000 (5-fold cross-validation).
