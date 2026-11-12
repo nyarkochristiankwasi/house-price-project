@@ -1,12 +1,38 @@
 # House Price Prediction
 
-Predicting house sale prices in Ames, Iowa using Python and machine learning.
+A machine learning project that predicts house sale prices in Ames, Iowa, from a few details a person can type into a form. I built it in my first month of learning data science, from first Python lines to a working app.
+
+![The app with default inputs](docs/app_default.png)
+![The app for a high-quality house](docs/app_high_quality.png)
+
+## Results at a glance
+- Guessing the average price for every house is off by about 62,600.
+- My best model, gradient boosting, is off by about 16,600 on a held-out test set (R2 0.90), about 73% lower.
+- The app uses 8 inputs instead of about 300 columns and has a typical error of about 19,000 (5-fold cross-validation), because the form has to be usable.
+- Overall quality is the most important input (about half of the model's importance), followed by living area.
+- The model is weakest on expensive houses and on unfinished new construction (Partial sales).
 
 ## Data
 From the Kaggle competition "House Prices: Advanced Regression Techniques":
 https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
 Download train.csv and put it in a folder called data. Data files are not stored in this repository.
+
+## The app
+A Streamlit app takes 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) and shows an estimated price with a likely range. The model is trained on one Iowa town, so it should not be used for other markets.
+
+To run it:
+1. Put train.csv in the data folder.
+2. python -m venv .venv, then activate it
+3. pip install -r requirements.txt
+4. python train_model.py
+5. streamlit run app/app.py
+
+## Projects
+1. **Housing data first look** (notebooks 05 and 06): cleaning, neighborhood comparison, and charts.
+2. **SQL analysis** (notebook 12): five business questions answered with SQL.
+3. **House price model** (notebook 19): seven models compared on one 80/20 split, with error analysis.
+4. **Live price predictor app** (the app folder).
 
 ## Notebooks
 Listed in the order I built them.
@@ -18,61 +44,38 @@ Listed in the order I built them.
 - 06_charts.ipynb: charts, plus the comparison of quality, location, and size
 - 07_sql_setup.ipynb: load the data into a SQLite database and run first SQL queries
 - 08_statistics_basics.ipynb: mean, median, standard deviation, and the shape of the price distribution
-- 09_sql_queries.ipynb: SQL queries on the housing data using WHERE, ORDER BY, IN, LIKE, and DISTINCT
-- 10_sql_groupby.ipynb: GROUP BY, HAVING, and JOIN on the housing data, plus a cap rate example
-- 11_sql_vs_pandas.ipynb: checks that SQL and pandas agree, plus five SQL practice problems
-- 12_project2_sql_analysis.ipynb: Project 2, five business questions about Ames house prices answered with SQL
-- 13_train_test_split.ipynb: splitting the data into training and test sets before modeling
-- 14_first_model.ipynb: first linear regression models, from one feature to five, with errors on the test set
-- 15_feature_prep.ipynb: filling gaps, one-hot encoding text columns, and fixing a model that predicted a negative price
-- 16_comps.ipynb: valuing houses by comparable sales, comparing that with the linear model, and blending the two
-- 17_tree_models.ipynb: random forest and gradient boosting compared with the linear model, plus feature importances
-- 18_error_analysis.ipynb: where the gradient boosting model fails, by price range, by house, and by sale type
-- 19_project3_house_price_model.ipynb: Project 3, seven models compared on Ames house prices, with error analysis and limits
-- 20_save_model.ipynb: a compact 8-input gradient boosting model for the app
-- 21_overfitting_and_cv.ipynb: overfitting in decision trees, and 5-fold cross-validation of the compact models
-- 22_property_analysis.ipynb: investor analysis of one real listing (yield, NOI, cap rate) and why the Ames model cannot price it
+- 09_sql_queries.ipynb: SQL queries using WHERE, ORDER BY, IN, LIKE, and DISTINCT
+- 10_sql_groupby.ipynb: GROUP BY, HAVING, and JOIN, plus a cap rate example
+- 11_sql_vs_pandas.ipynb: checks that SQL and pandas agree, plus five practice problems
+- 12_project2_sql_analysis.ipynb: Project 2, five business questions answered with SQL
+- 13_train_test_split.ipynb: splitting the data into training and test sets
+- 14_first_model.ipynb: first linear regression models, from one feature to five
+- 15_feature_prep.ipynb: filling gaps, one-hot encoding, and fixing a model that predicted a negative price
+- 16_comps.ipynb: valuing houses by comparable sales, and blending that with the linear model
+- 17_tree_models.ipynb: random forest and gradient boosting compared with the linear model
+- 18_error_analysis.ipynb: where the best model fails, by price range, by house, and by sale type
+- 19_project3_house_price_model.ipynb: Project 3, seven models compared, with error analysis and limits
+- 20_save_model.ipynb: a compact 8-input model for the app
+- 21_overfitting_and_cv.ipynb: overfitting in decision trees, and 5-fold cross-validation
+- 22_property_analysis.ipynb: investor analysis of one real listing, and why the Ames model cannot price it
 
-## What I found so far
-- The training data has 1,460 houses and 81 columns.
-- About 17% of houses (242 of 1,460) have 4 or more bedrooms.
-- Missing values: PoolQC has the most (1,453 of 1,460 rows). This does not mean the data is broken. In this dataset a missing value usually means the house has no such feature, as explained in data_description.txt. The same is true for Alley, Fence, and the garage columns, so I filled them with "None". LotFrontage was filled with the median, and GarageYrBlt with 0 as a placeholder for no garage.
-- Price depends on quality, location, and size. Quality has the strongest link to price (correlation 0.79), followed by location (0.74) and size (0.71). The factors are close together, and the location figure is slightly generous because each house is part of its neighborhood's average.
-- Location: NoRidge has the highest average price (about 335,000) and MeadowV the lowest (about 99,000), a gap of about 3.4 times. NridgHt and StoneBr charge about 158 per square foot, against a typical 120.
-- Size alone does not set the price. The two largest houses (5,642 and 4,676 sq ft, both in Edwards) sold for only 160,000 and 184,750, while large houses in NoRidge sold for 625,000 to 755,000.
-- Not in this dataset, but important to buyers: land ownership type and property documentation. A future model could include these.
-- SQL check: I loaded the data into SQLite, and a query for houses over 400,000 with 4 or more bedrooms returned the same 14 houses as pandas. Seven of the 14 are in NoRidge and three are in NridgHt.
-- Prices are right-skewed. The mean (about 180,921) is above the median (163,000) because a long tail of expensive houses pulls it up. The standard deviation is about 79,443, and about 78% of houses fall within one standard deviation of the mean.
-- SQL check: 46 houses were built before 1950 with a quality score of 7 or higher, and 26 of them sold above the overall median (163,000). Most are in OldTown (20) and Crawfor (15), and Crawfor's typical price (about 230,000) is well above OldTown's (about 158,000), so neighborhood matters alongside quality.
-- SQL summaries: average price rises at every step of overall quality (about 50,000 at quality 1 to 438,588 at quality 10), but not at every step of bedroom count. Three-bedroom houses are the most common (804 of 1,460).
-- JOIN check: 636 of the 1,460 houses (about 44%) sold above their own neighborhood's average. The 1892 OldTown house with quality 10 sold 346,775 above its neighborhood average, so quality can outweigh location.
-- SQL and pandas gave identical answers on three cross-checks. Garage size and central air both go with higher prices (3-car garages average about 309,600, about 3 times the no-garage average of 103,300), though both partly reflect house size, age, and quality. StoneBr and NridgHt charge the most per square foot (about 165).
-- Project 2 (SQL analysis): price depends on quality, location, and size together. Average price rises at every step of quality (about 50,150 to 438,588), NridgHt averages about 2.5 times BrkSide among the larger neighborhoods, and StoneBr and NridgHt charge the most per square foot (about 165). 636 of 1,460 houses sold above their neighborhood average.
-- Train/test split: I split the 1,460 houses 80/20 (1,168 for training, 292 for testing) with a fixed random seed. The average prices of the two sets (181,442 and 178,840) are close to the overall mean, so the test set is a fair sample.
-- First models: guessing the average price for every house is off by about 62,600. A linear regression on living area alone cuts that to about 38,300 (R2 0.55), adding overall quality brings it to about 28,600 (R2 0.75), and five features reach about 25,400 (R2 0.79), nearly 60% lower than the baseline. Garage size and year built added little because they overlap with size and quality.
-- Feature preparation: adding neighborhood (one-hot encoded) cut the average error from 25,415 to 22,339 (R2 0.79 to 0.83). A model using all 300 columns had a much lower R2 (0.44) because it predicted a negative price for one house: only 6 training houses have pools, so the pool columns got extreme weights. Dropping them gave an average error of 19,245 (R2 0.88), about 69% below the baseline. That choice was made after seeing the test results, so the score is slightly optimistic.
-- Comparable sales: valuing each test house as the average of its 5 most similar training houses (same neighborhood, similar quality and size) gave an average error of 22,585, against 22,391 for the linear model with neighborhood. Averaging the two cut the error to 20,498, about 67% below the 62,576 baseline. Both methods underpredict the most expensive houses (quality 9 or 10).
-- Tree models: gradient boosting has the lowest average error (16,626, R2 0.90), about 14% below the best linear model (19,245) and about 73% below the 62,576 baseline. A random forest reaches 17,426. Overall quality holds about half of the model's importance (50.3%), followed by living area (15.1%). The trees avoid the negative price that broke the linear model, but both still underpredict the most expensive houses.
-- Error analysis: the gradient boosting model has a median miss of about 10,400, and 69% of test houses are within 10% of the real price (90% within 20%). Errors are concentrated: the worst 10 houses cause 57% of the squared error, and all seven test houses over 400,000 were underpredicted. Sale type matters: the average miss is about 13,400 for Normal sales but about 42,400 for Partial sales (unfinished new construction), which are 9% of the test set.
-- Project 3 (house price model): I compared seven models on the same 80/20 split. Guessing the average is off by about 62,600, living area alone cuts that to about 38,300, five numeric features to about 25,400, and gradient boosting to about 16,600 (R2 0.90), 73% lower than the baseline. The biggest improvement came from adding overall quality, not from the choice of algorithm. The model tends to underpredict the most expensive houses and does worst on unfinished new construction.
-- Compact model for the app: shrinking the inputs from about 300 columns to 8 that a person can type into a form (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) gives an average error of 17,635 (R2 0.91), against 16,626 for the full model, a loss of about 6% in accuracy.
-- Overfitting and cross-validation: a decision tree with no depth limit is off by about 113 on the houses it trained on but about 25,100 on new ones, so it memorizes. With 5-fold cross-validation, gradient boosting (8 inputs) has an average error of 18,990, about 15% below linear regression (22,333) and about 67% below guessing the average (57,458). The fold-to-fold spread is about 4,500, so earlier single-split scores were slightly optimistic and small differences between models are within noise.
-- Property analysis: a £590,000 new-build 4-bed in Didcot, UK, with an estimated rent of £2,500 a month (six comparables, range £2,000 to £2,750), has a gross yield of about 5.1% but a cap rate of about 3.2% after costs (before mortgage, stamp duty, and tax). Rent matters about three times as much as the service charge uncertainty. The house costs about £428 per sq ft, against about $140 for a similar new house in my Ames model, which should not be used to price it because it was trained on a different market.
+## What I found
+- **Missing values:** most empty cells mean the house has no such feature (no pool, alley, fence, or garage), not lost data.
+- **Price depends on quality, location, and size together.** Correlations with price: quality 0.79, location 0.74, size 0.71. The location figure is slightly generous because each house is part of its neighborhood's average.
+- **Location:** NoRidge has the highest average price (about 335,000) and MeadowV the lowest (about 99,000). StoneBr and NridgHt charge the most per square foot (about 165).
+- **Size alone does not set the price:** the two largest houses, both in Edwards, sold for only 160,000 and 184,750.
+- **SQL:** average price rises at every step of overall quality (about 50,000 at quality 1 to 438,588 at quality 10). 636 of 1,460 houses sold above their own neighborhood's average.
+- **Models:** adding quality gave the biggest improvement, more than switching algorithms. A linear model with all columns predicted a negative price for one house because only 6 houses have pools, so I dropped the pool columns. Tree models handled them better.
+- **Where the model fails:** the worst 10 of 292 test houses cause 57% of the squared error. All seven test houses over 400,000 were underpredicted. Partial sales (unfinished new construction) have an average miss of about 42,400, against about 13,400 for Normal sales.
+- **Overfitting:** a decision tree with no depth limit is off by about 113 on the houses it trained on and about 25,100 on new ones. Cross-validation shows single-split scores are slightly optimistic.
+- **Property analysis:** a 590,000 pound new-build 4-bed in Didcot, UK, at an estimated rent of 2,500 pounds a month, has a gross yield of about 5.1% but a cap rate of about 3.2% after costs (before mortgage, stamp duty, and tax).
 
-## The app
-A small Streamlit app predicts a house price from 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood). The model is gradient boosting with a typical error of about 19,000 (5-fold cross-validation).
-
-To run it:
-1. Put train.csv in a folder called data.
-2. python -m venv .venv, then activate it
-3. pip install -r requirements.txt
-4. python train_model.py
-5. streamlit run app/app.py
-
+## Limits
+All model scores come from one town and mostly one train/test split. The model is a learning project, not valuation advice.
 
 ## Progress
 - [x] First look at the data
 - [x] Cleaning and charts
 - [x] SQL analysis
 - [x] Models
-- [ ] Live app
+- [ ] Live app (deploying on Streamlit Community Cloud)
