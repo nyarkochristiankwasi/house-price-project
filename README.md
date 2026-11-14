@@ -23,6 +23,13 @@ Download train.csv and put it in a folder called data. Data files are not stored
 ## The app
 A Streamlit app takes 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) and shows an estimated price with a likely range. The model is trained on one Iowa town, so it should not be used for other markets.
 
+## Project structure
+- src/house_model.py: the model code (load data, build the model, evaluate, save)
+- train_model.py: trains the model and saves it to the app folder
+- app/: the Streamlit app and the saved model
+- tests/: automated tests (added in Week 5)
+- Notebooks (01 to 22): the analysis, in the order I built it
+
 To run it:
 1. Put train.csv in the data folder.
 2. python -m venv .venv, then activate it
