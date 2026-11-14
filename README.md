@@ -5,6 +5,8 @@ A machine learning project that predicts house sale prices in Ames, Iowa, from a
 ![The app with default inputs](docs/app_default.png)
 ![The app for a high-quality house](docs/app_high_quality.png)
 
+**Try the live app:** https://ames-house-price.streamlit.app/
+
 ## Results at a glance
 - Guessing the average price for every house is off by about 62,600.
 - My best model, gradient boosting, is off by about 16,600 on a held-out test set (R2 0.90), about 73% lower.
@@ -78,4 +80,4 @@ All model scores come from one town and mostly one train/test split. The model i
 - [x] Cleaning and charts
 - [x] SQL analysis
 - [x] Models
-- [ ] Live app (deploying on Streamlit Community Cloud)
+- [x] Live app: https://ames-house-price.streamlit.app/ (deploying on Streamlit Community Cloud)
