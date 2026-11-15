@@ -67,6 +67,7 @@ Listed in the order I built them.
 - 20_save_model.ipynb: a compact 8-input model for the app
 - 21_overfitting_and_cv.ipynb: overfitting in decision trees, and 5-fold cross-validation
 - 22_property_analysis.ipynb: investor analysis of one real listing, and why the Ames model cannot price it
+- 23_mortgage_basics.ipynb: how an example mortgage changes the cash flow of the Didcot listing
 
 ## What I found
 - **Missing values:** most empty cells mean the house has no such feature (no pool, alley, fence, or garage), not lost data.
