@@ -221,3 +221,4 @@ __marimo__/
 *.csv
 .venv/
 __pycache__/
+.pytest_cache/

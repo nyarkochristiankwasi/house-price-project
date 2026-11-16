@@ -27,7 +27,7 @@ A Streamlit app takes 8 inputs (living area, quality, garage, basement, year bui
 - src/house_model.py: the model code (load data, build the model, evaluate, save)
 - train_model.py: trains the model and saves it to the app folder
 - app/: the Streamlit app and the saved model
-- tests/: automated tests (added in Week 5)
+- tests/: automated tests with pytest (run: python -m pytest)
 - Notebooks (01 to 22): the analysis, in the order I built it
 
 To run it:

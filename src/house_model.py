@@ -63,3 +63,9 @@ def save_model(df, results, out_dir="app"):
     with open(out / "model_info.json", "w") as f:
         json.dump(meta, f, indent=2)
     return final
+def check_ranges(house, ranges):
+    """Raise ValueError if a number is outside the range seen in training."""
+    for name, (low, high) in ranges.items():
+        value = house[name]
+        if value < low or value > high:
+            raise ValueError(f"{name} = {value} is outside the range {low} to {high}")
