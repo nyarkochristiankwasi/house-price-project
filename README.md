@@ -20,6 +20,12 @@ https://www.kaggle.com/c/house-prices-advanced-regression-techniques
 
 Download train.csv and put it in a folder called data. Data files are not stored in this repository.
 
+## Running the tests
+1. pip install -r requirements-dev.txt
+2. python -m pytest
+
+The tests check that the saved model loads, that a typical house gets a sensible price, that out-of-range inputs are rejected, that the model code trains on a small table, and that the model settings file matches the code. They do not need train.csv.
+
 ## The app
 A Streamlit app takes 8 inputs (living area, quality, garage, basement, year built, bathrooms, bedrooms, neighborhood) and shows an estimated price with a likely range. The model is trained on one Iowa town, so it should not be used for other markets.
 

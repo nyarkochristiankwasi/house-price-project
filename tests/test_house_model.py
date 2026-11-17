@@ -58,3 +58,10 @@ def test_make_model_trains_on_a_small_dataset():
     preds = model.predict(df[FEATURES])
     assert len(preds) == len(df)
     assert (preds > 0).all()
+
+def test_model_info_matches_the_code():
+    with open(INFO_PATH) as f:
+        info = json.load(f)
+    for key in ["features", "neighborhoods", "ranges", "cv_mae"]:
+        assert key in info
+    assert info["features"] == FEATURES
